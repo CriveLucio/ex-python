@@ -1,3 +1,5 @@
+from os import system as sys
+
 perguntas = [
     {
         'pergunta': "Quem descobriu o Brasil?",
@@ -15,8 +17,31 @@ perguntas = [
         'resposta': '4'
     }
 ]
-
+acertos = 0
 for indice in perguntas: 
-    for pergunta in indice: 
-        print(indice['pergunta'])
-        opcao = input('Qual a opção correta?\n(a)', indice['opcoes'[0]])
+    print(indice['pergunta'])
+    opcoes = indice['opcoes']
+
+    for i, opcao in enumerate(indice['opcoes']):
+        print(f'({i}) {opcao}')    
+    while True:
+        try: 
+            opc_selec = int(input('Qual a opção selecionada? '))
+            break
+        
+        except ValueError:
+            print('Opção selecionara inválida, por favor, digite o valor inteiro correspondente a opção desejada.')
+        except IndexError: 
+            print('Por favor, digite apenas o valor inteiro correspondente a opção desejada!')
+
+    if opcoes[opc_selec] == indice['resposta']:
+        sys('cls')
+        print('Resposta correta!')
+        acertos +=1
+    
+    else: 
+        sys('cls')
+        print('Opção incorreta.')
+
+print(f"Você conseguiu {acertos} acertos de {len(perguntas)} perguntas!")
+sys('pause')
