@@ -27,21 +27,26 @@ for indice in perguntas:
     while True:
         try: 
             opc_selec = int(input('Qual a opção selecionada? '))
-            break
+            
         
+            if opcoes[opc_selec] == indice['resposta']:
+                sys('cls')
+                print('Resposta correta!')
+                acertos +=1
+
+            else: 
+                sys('cls')
+                print('Opção incorreta.')
+
+            break
+
         except ValueError:
             print('Opção selecionara inválida, por favor, digite o valor inteiro correspondente a opção desejada.')
         except IndexError: 
             print('Por favor, digite apenas o valor inteiro correspondente a opção desejada!')
-
-    if opcoes[opc_selec] == indice['resposta']:
-        sys('cls')
-        print('Resposta correta!')
-        acertos +=1
+        except KeyboardInterrupt:
+            continue
     
-    else: 
-        sys('cls')
-        print('Opção incorreta.')
 
 print(f"Você conseguiu {acertos} acertos de {len(perguntas)} perguntas!")
 sys('pause')
